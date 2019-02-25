@@ -1,0 +1,7 @@
+<div id="root"></div>
+
+<script>
+    window.initialText = "<%= @text %>"
+</script>
+
+<script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/js/mobtype.js") %>"></script>

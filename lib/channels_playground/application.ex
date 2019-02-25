@@ -8,14 +8,10 @@ defmodule ChannelsPlayground.Application do
   def start(_type, _args) do
     # List all child processes to be supervised
     children = [
-      # Start the endpoint when the application starts
-      ChannelsPlaygroundWeb.Endpoint
-      # Starts a worker by calling: ChannelsPlayground.Worker.start_link(arg)
-      # {ChannelsPlayground.Worker, arg},
+      ChannelsPlaygroundWeb.Endpoint,
+      %{id: :mobtype, start: {ChannelsPlayground.Store, :start_link, [:mobtype, %{text: ""}]}}
     ]
 
-    # See https://hexdocs.pm/elixir/Supervisor.html
-    # for other strategies and supported options
     opts = [strategy: :one_for_one, name: ChannelsPlayground.Supervisor]
     Supervisor.start_link(children, opts)
   end
